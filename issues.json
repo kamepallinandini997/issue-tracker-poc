@@ -1,0 +1,10 @@
+[
+  {
+    "id": 2,
+    "project_id": "PROJ123",
+    "title": "Login page throws 400 error",
+    "description": "Users report a 400 Internal Server Error when submitting the login form.",
+    "priority": "High",
+    "status": "open"
+  }
+]

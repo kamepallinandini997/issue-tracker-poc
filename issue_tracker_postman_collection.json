@@ -1,0 +1,206 @@
+{
+  "info": {
+    "name": "Project-Based Issue Tracker",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000"
+        }
+      }
+    },
+    {
+      "name": "Create Project",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"P001\",\n  \"name\": \"Sample Project\",\n  \"status\": \"Active\",\n  \"issues\": []\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/projects",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "projects"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Projects",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/projects",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "projects"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Project By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/projects/P001",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "projects",
+            "P001"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Issue",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 1,\n  \"project_id\": \"P001\",\n  \"title\": \"Login Bug\",\n  \"description\": \"Fails for new users\",\n  \"priority\": \"High\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/add-issue",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "add-issue"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Issues by Status",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status_type\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/get-all-issues",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "get-all-issues"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Issues by Project",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/projects/P001/issues",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "projects",
+            "P001",
+            "issues"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Issue Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"P001\",\n  \"issue_id\": 1,\n  \"status\": \"Closed\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/update-issue-status",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "update-issue-status"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Issue",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"project_id\": \"P001\",\n  \"issue_id\": 1\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/delete-issue",
+          "host": [
+            "127.0.0.1"
+          ],
+          "port": "8000",
+          "path": [
+            "delete-issue"
+          ]
+        }
+      }
+    }
+  ]
+}

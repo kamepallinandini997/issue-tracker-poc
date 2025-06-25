@@ -1,0 +1,7 @@
+2025-06-25 14:13:57,569 - INFO -Issue ID 1 created
+2025-06-25 14:20:28,616 - ERROR -Issue with ID 1 already exists
+2025-06-25 14:22:25,544 - ERROR -Error occured while loading issues
+2025-06-25 14:23:26,408 - ERROR -Error occured while loading issues
+2025-06-25 14:23:26,409 - INFO -Issue ID 2 created
+2025-06-25 15:06:37,577 - ERROR -Issue with ID 2 already exists
+2025-06-25 15:06:57,062 - ERROR -Issue with ID 2 already exists
