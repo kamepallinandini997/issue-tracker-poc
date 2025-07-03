@@ -36,7 +36,17 @@ class Project(BaseModel):
     status: str                   
     issues: list[Issue] = []     
 
-ISSUE_FILE = "issues.json"       
+class UserRegister(BaseModel):
+    username: str
+    password: str
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+ISSUE_FILE = "issues.json"
+USER_FILE = "users.json"
+     
 # --------------------------- Helper Methods ---------------------------
 def load_data():
     """
@@ -57,6 +67,31 @@ def save_data(projects):
     """
     with open(ISSUE_FILE, "w") as f:
         json.dump(projects, f, indent=2)
+
+# ----------------------------- Auth Routes -----------------------------
+
+@app.post("/register")
+async def register_user(user: UserRegister):
+    users = load_data(USER_FILE)
+    # Check if user already exists
+    if any(u["username"] == user.username for u in users):
+        logger.error(f"User registration failed: {user.username} already exists")
+        raise HTTPException(status_code=400, detail="Username already exists")
+    # Add new user
+    users.append(user.dict())
+    save_data(users, USER_FILE)
+    logger.info(f"User registered: {user.username}")
+    return {"message": f"User {user.username} registered successfully"}
+
+@app.post("/login")
+async def login_user(user: UserLogin):
+    users = load_data(USER_FILE)
+    for u in users:
+        if u["username"] == user.username and u["password"] == user.password:
+            logger.info(f"User logged in: {user.username}")
+            return {"message": f"Welcome {user.username}"}
+    logger.error(f"Login failed for user: {user.username}")
+    raise HTTPException(status_code=401, detail="Invalid username or password")
 
 # ----------------------------- Routes -----------------------------
 
@@ -279,6 +314,6 @@ async def delete_issue(request: Request):
         raise HTTPException(status_code=404, detail="Project not found")
 
     if not issue_found:
-        logger.error(f"Issue ID {issue_id} not found in project {project_id}")
+        logger.error(f"Issue I D {issue_id} not found in project {project_id}")
         raise HTTPException(status_code=404, detail="Issue not found")
 
